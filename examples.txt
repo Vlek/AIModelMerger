@@ -1,0 +1,37 @@
+"""
+
+TODO: Ensure that the merges do not cause there to be any
+      off-by-one exceptions, do not want it to hide the fact that
+      it "stole" any percentage from another model.
+      I'm worried here that there could be a merge that slightly
+      crowds another, and, that crowding would not be detectable
+      in the overall numbers.
+
+"""
+
+
+
+A: 25
+B: 25
+C: 50
+
+AB 0.5 -> A: 50, B: 50
+
+reduction_in_weight = total_percentage - current_merge_weight
+AB + C 0.5: 1 - 0.5
+
+
+
+starting A 100
+
+total_percentage = A_weight + B_weight = 50
+current_merge_weight B_weight = 25
+reduction_in_weight = current_merge_weight / total_percentage = 50%
+
+A + B: A 50, B 50
+
+total_percentage = AB_weight + C_weight = 100
+current_merge_weight = C_weight = 50
+reduction_in_weight = current_merge_weight / total_percentage = 50%
+
+AB + C: AB 50, C 50
