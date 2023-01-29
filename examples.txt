@@ -11,6 +11,7 @@ TODO: Ensure that the merges do not cause there to be any
 
 
 
+# Example idea 1
 A: 25
 B: 25
 C: 50
@@ -21,6 +22,11 @@ reduction_in_weight = total_percentage - current_merge_weight
 AB + C 0.5: 1 - 0.5
 
 
+# Example idea 2
+
+A: 25
+B: 25
+C: 50
 
 starting A 100
 
@@ -35,3 +41,45 @@ current_merge_weight = C_weight = 50
 reduction_in_weight = current_merge_weight / total_percentage = 50%
 
 AB + C: AB 50, C 50
+
+
+# Example idea 2, input 2
+
+A:  5
+B: 15
+C: 25
+D: 35
+E: 20
+
+starting A 100
+
+total_percentage = A_weight + B_weight = 20
+current_merge_weight = B_weight = 15
+reduction_in_weight = current_merge_weight / total_percentage = 75%
+alpha = 100 - reduction_in_weight = 25
+
+A + B: A 25, B 75
+
+total_percentage = AB_weight + C_weight = 45
+current_merge_weight = C_weight = 25
+reduction_in_weight = current_merge_weight / total_percentage = 55% (NOTE: FLOORED)
+alpha = 100 - reduction_in_weight = 45
+
+AB + C: AB 45 C 55
+
+total_percentage = ABC_weight + D_weight = 80
+current_merge_weight = D_weight = 35
+reduction_in_weight = current_merge_weight / total_percentage = 43% (NOTE: FlOORED)
+alpha = 100 - reduction_in_weight = 57
+
+ABC + D: ABC 57 D 43
+
+total_percentage = ABCD_weight + E_weight = 100
+current_merge_weight = E_weight = 20
+reduction_in_weight = current_merge_weight / total_percentage = 20%
+alpha = 100 - reduction_in_weight = 80
+
+ABCD + E: ABCD 80 E 20
+
+
+finished: ABCDE 100
