@@ -24,6 +24,7 @@ def merge(models_and_percentages: dict[str, float]) -> dict[str, float]:
     sorted_model_names: list[str] = sorted(
         models_and_percentages,
         key=lambda key: models_and_percentages[key],
+        reverse=True,
     )
 
     starting_model_name: str = sorted_model_names[0]
