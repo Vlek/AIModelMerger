@@ -21,23 +21,23 @@ NOTE:
 def merge(models_and_percentages: dict[str, float]) -> dict[str, float]:
     """Merges the models together to come to the same percentages given."""
 
-    sorted_models = sorted(
+    sorted_model_names: list[str] = sorted(
         models_and_percentages,
         key=lambda key: models_and_percentages[key],
     )
 
-    starting_model: str = sorted_models[0]
+    starting_model_name: str = sorted_model_names[0]
 
     # Initializing our mixes with our first model at 100% intensity.
-    merged_models: dict[str, float] = {starting_model: 1.0}
+    merged_models: dict[str, float] = {starting_model_name: 1.0}
 
     # This is going to allow us to know how much of the total we have
     # merged. This is going to inform the amount that we should be
     # adding of any one model.
-    total_merged_percent: float = models_and_percentages[starting_model]
+    total_merged_percent: float = models_and_percentages[starting_model_name]
 
-    for index in range(1, len(sorted_models)):
-        current_model_name: str = sorted_models[index]
+    for index in range(1, len(sorted_model_names)):
+        current_model_name: str = sorted_model_names[index]
         current_model_percentage: float = models_and_percentages[current_model_name]
 
         total_merged_percent += current_model_percentage
@@ -48,7 +48,7 @@ def merge(models_and_percentages: dict[str, float]) -> dict[str, float]:
         # would mix at 50/50, which would mean reduction_in_weights = 0.5
         reduction_in_weights: float = current_model_percentage / total_merged_percent
 
-        # Alpha is the nominclature given by the logic problem as it was given
+        # Alpha is the nomenclature given by the logic problem as it was given
         # to me. This is the amount that model A is 'mixed' with model B,
         # essentially the opposite of the reduction.
         alpha: float = 1.0 - reduction_in_weights
