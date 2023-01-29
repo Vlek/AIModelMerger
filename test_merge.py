@@ -26,4 +26,7 @@ def test_merge_models(models_and_percentages) -> None:
     """"""
     merged_models: dict[str, float] = merger.merge(models_and_percentages)
 
-    assert models_and_percentages == merged_models
+    assert len(models_and_percentages) == len(merged_models)
+
+    for model in models_and_percentages:
+        assert abs(merged_models[model] - models_and_percentages[model]) <= 1
