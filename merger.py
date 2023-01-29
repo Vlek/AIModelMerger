@@ -1,24 +1,29 @@
 """
+AI model merger for weighted merge.
 
+This is an algorithm that allows one to specify the models and their weights
+such that they can be used in another algorithm to merge them two by two and
+have each model appear in the total merged model in the requested percentages.
+
+Example:
+
+    input: {"model a": 0.25, "model b": 0.25, "model c": 0.50}
+    output: same as input
+
+
+NOTE:
+    This is merely the algorithm that should be used, it is up to those
+    attempting to create AI images to apply this to their scripts by taking out
+    the portion that is saving the information into merged_models.
 """
-
-
-def merge_models(a: str, b: str, alpha: float) -> None:
-    """Pretends to merge models, outputs info."""
-    print(f"Merging model {a} with model {b} with alpha {alpha * 100}%")
 
 
 def merge(models_and_percentages: dict[str, float]) -> dict[str, float]:
     """Merges the models together to come to the same percentages given."""
 
-    # We're going to sort in reverse order in the hopes that the smaller
-    # percentages are not crowded out via rounding. The ones with the
-    # higher percentages can take a rounding hit without as much effect
-    # by definition.
     sorted_models = sorted(
         models_and_percentages,
         key=lambda key: models_and_percentages[key],
-        reverse=True,
     )
 
     starting_model: str = sorted_models[0]
